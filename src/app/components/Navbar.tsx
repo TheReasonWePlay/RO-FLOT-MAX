@@ -11,30 +11,38 @@ interface NavbarProps {
 
 export function Navbar({ onReset, onExample }: NavbarProps) {
   return (
-    <nav className="h-16 border-b border-border bg-white px-6 flex items-center justify-between shadow-sm">
+    <nav className="h-16 border-b border-border bg-background px-6 flex items-center justify-between shadow-sm">
       <div className="flex items-center gap-3">
-        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+        
+        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#ff5c89] to-[#ff3d73] flex items-center justify-center">
           <GitCompare className="w-5 h-5 text-white" />
         </div>
-        <h1 className="text-foreground">FlotMax</h1>
-        <span className="text-sm text-muted-foreground ml-2">Recherche Opération étape par étape de Flot maximal</span>
+
+        <h1 className="text-foreground font-semibold">FlotMax</h1>
+
+        <span className="text-sm text-muted-foreground ml-2">
+          Recherche Opération étape par étape de Flot maximal
+        </span>
       </div>
 
       <div className="flex items-center gap-2">
+        
         <button
           onClick={onReset}
-          className="px-4 py-2 rounded-lg border border-border bg-white hover:bg-destructive/10 text-destructive transition-colors flex items-center gap-2 text-sm"
+          className="px-4 py-2 rounded-lg border border-border bg-transparent hover:bg-red-500/10 text-[#ff3d73] transition flex items-center gap-2 text-sm"
         >
           <RotateCcw className="w-4 h-4" />
           Réinitialiser
         </button>
+
         <button
           onClick={onExample}
-          className="px-4 py-2 rounded-lg border border-border bg-white hover:bg-destructive/10 text-destructive transition-colors flex items-center gap-2 text-sm"
+          className="px-4 py-2 rounded-lg bg-[#ff5c89] hover:bg-[#ff3d73] text-white transition flex items-center gap-2 text-sm"
         >
           <RotateCcw className="w-4 h-4" />
           Exemple
         </button>
+
       </div>
     </nav>
   );
