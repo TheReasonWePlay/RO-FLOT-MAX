@@ -41,18 +41,22 @@ export function SelectionPanel({
   //--------------------------------------------RENDER------------------------------------------------
 
   return (
-    <div className="w-80 border-l border-border bg-white flex flex-col h-full">
+    <div className="w-80 border-l border-border bg-background flex flex-col h-full">
+      {/* HEADER */}
       <div className="p-6 border-b border-border">
-        <h2 className="text-foreground flex items-center gap-2">
-          <div className="w-1 h-6 bg-blue-500 rounded"></div>
+        <h2 className="text-foreground flex items-center gap-2 font-semibold">
+          <div className="w-1 h-6 bg-[#ff5c89] rounded"></div>
           Détails
         </h2>
       </div>
 
       <div className="flex-1 p-6 overflow-auto">
+
+        {/* EMPTY STATE */}
         {!hasSelection && (
           <div className="flex flex-col items-center justify-center h-full text-center">
-            <div className="w-16 h-16 rounded-full bg-muted/30 flex items-center justify-center mb-4">
+
+            <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mb-4">
               <svg
                 className="w-8 h-8 text-muted-foreground"
                 fill="none"
@@ -63,133 +67,162 @@ export function SelectionPanel({
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"
+                  d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"
                 />
               </svg>
             </div>
+
             <p className="text-sm text-muted-foreground">
               Aucun sommet ou arc sélectionné
             </p>
+
             <p className="text-xs text-muted-foreground mt-2 max-w-xs">
-              Cliquez sur un sommet ou un arc dans le graphique pour voir les détails et les actions
+              Cliquez sur un sommet ou un arc pour voir les détails et actions
             </p>
+
           </div>
         )}
 
+        {/* NODE */}
         {selectedNode && (
           <div className="space-y-4">
-            <div className="p-4 bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-lg border-2 border-blue-200">
-              <div className="flex items-center gap-2 mb-3">
+
+            <div className="p-4 rounded-lg border border-border bg-muted">
+
+              {/* HEADER NODE */}
+              <div className="flex items-center gap-3 mb-3">
+
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold"
                   style={{
                     backgroundColor:
-                      selectedNode.type === 'source'
-                        ? '#10b981'
-                        : selectedNode.type === 'sink'
-                        ? '#ef4444'
-                        : '#3b82f6'
+                      selectedNode.type === "source"
+                        ? "#10b981"
+                        : selectedNode.type === "sink"
+                        ? "#ef4444"
+                        : "#ff5c89"
                   }}
                 >
                   {selectedNode.label}
                 </div>
+
                 <div>
-                  <p className="text-sm text-muted-foreground">Sommet sélectionné</p>
-                  <p className="font-semibold text-foreground">{selectedNode.label}</p>
+                  <p className="text-xs text-muted-foreground">
+                    Sommet sélectionné
+                  </p>
+                  <p className="font-semibold text-foreground">
+                    {selectedNode.label}
+                  </p>
                 </div>
+
               </div>
 
+              {/* INFO GRID */}
               <div className="grid grid-cols-2 gap-2 text-sm">
-                <div className="p-2 bg-white/60 rounded">
+
+                <div className="p-2 bg-background rounded border border-border">
                   <p className="text-xs text-muted-foreground">ID</p>
-                  <p className="font-mono">{selectedNode.id}</p>
+                  <p className="font-mono text-foreground">{selectedNode.id}</p>
                 </div>
-                <div className="p-2 bg-white/60 rounded">
+
+                <div className="p-2 bg-background rounded border border-border">
                   <p className="text-xs text-muted-foreground">Type</p>
-                  <p className="font-mono capitalize">{selectedNode.type}</p>
+                  <p className="font-mono capitalize text-foreground">
+                    {selectedNode.type}
+                  </p>
                 </div>
+
               </div>
             </div>
 
-            {!algorithmStarted && (
-              <>
-                {selectedNode.type === 'normal' ? (
-                  <button
-                    onClick={() => onDeleteNode(selectedNode.id)}
-                    className="w-full px-4 py-3 rounded-lg bg-destructive/10 hover:bg-destructive/20 text-destructive transition-colors flex items-center justify-center gap-2 border-2 border-destructive/30 hover:border-destructive/50"
-                  >
-                    <Trash2 className="w-5 h-5" />
-                    <span className="font-medium">Supprimer le sommet</span>
-                  </button>
-                ) : (
-                  <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg">
-                    <p className="text-xs text-amber-700 text-center">
-                      Les sommets source et destination ne peuvent pas être supprimés.
-                    </p>
-                  </div>
-                )}
-              </>
-            )}
-
-            {algorithmStarted && (
-              <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                <p className="text-xs text-blue-700 text-center">
-                  La modification est bloquée pendant l'exécution de l'algorithme.
-                </p>
+            {/* ACTIONS NODE */}
+            {!algorithmStarted ? (
+              selectedNode.type === "normal" ? (
+                <button
+                  onClick={() => onDeleteNode(selectedNode.id)}
+                  className="w-full px-4 py-3 rounded-lg border border-red-500/30 bg-red-500/10 hover:bg-red-500/20 text-red-500 transition flex items-center justify-center gap-2"
+                >
+                  <Trash2 className="w-5 h-5" />
+                  Supprimer le sommet
+                </button>
+              ) : (
+                <div className="p-3 rounded-lg border border-amber-200 bg-amber-50 text-center text-xs text-amber-700">
+                  Les sommets source et puits ne peuvent pas être supprimés.
+                </div>
+              )
+            ) : (
+              <div className="p-3 rounded-lg border border-[#ff5c89]/20 bg-[#ffe0e8] text-center text-xs text-[#ff5c89]">
+                Modification bloquée pendant l'exécution de l'algorithme.
               </div>
             )}
+
           </div>
         )}
 
+        {/* EDGE */}
         {selectedEdge && (
           <div className="space-y-4">
-            <div className="p-4 bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-lg border-2 border-purple-200">
+
+            <div className="p-4 rounded-lg border border-border bg-muted">
+
+              {/* HEADER EDGE */}
               <div className="mb-3">
-                <p className="text-sm text-muted-foreground mb-1">Arc sélectionné</p>
+                <p className="text-xs text-muted-foreground">
+                  Arc sélectionné
+                </p>
                 <p className="font-semibold text-foreground text-lg">
                   {selectedEdge.source} → {selectedEdge.target}
                 </p>
               </div>
 
+              {/* GRID */}
               <div className="grid grid-cols-2 gap-2 text-sm">
-                <div className="p-2 bg-white/60 rounded">
+
+                <div className="p-2 bg-background rounded border border-border">
                   <p className="text-xs text-muted-foreground">De</p>
                   <p className="font-mono">{selectedEdge.source}</p>
                 </div>
-                <div className="p-2 bg-white/60 rounded">
+
+                <div className="p-2 bg-background rounded border border-border">
                   <p className="text-xs text-muted-foreground">À</p>
                   <p className="font-mono">{selectedEdge.target}</p>
                 </div>
-                <div className="p-2 bg-white/60 rounded">
+
+                <div className="p-2 bg-background rounded border border-border">
                   <p className="text-xs text-muted-foreground">Capacité</p>
-                  <p className="font-mono font-semibold">{selectedEdge.capacity}</p>
+                  <p className="font-mono font-semibold">
+                    {selectedEdge.capacity}
+                  </p>
                 </div>
-                <div className="p-2 bg-white/60 rounded">
+
+                <div className="p-2 bg-background rounded border border-border">
                   <p className="text-xs text-muted-foreground">Flot</p>
-                  <p className="font-mono font-semibold text-blue-600">{selectedEdge.flow}</p>
+                  <p className="font-mono font-semibold text-[#ff5c89]">
+                    {selectedEdge.flow}
+                  </p>
                 </div>
+
               </div>
             </div>
 
-            {!algorithmStarted && (
+            {/* ACTION EDGE */}
+            {!algorithmStarted ? (
               <button
                 onClick={() => onDeleteEdge(selectedEdge.id)}
-                className="w-full px-4 py-3 rounded-lg bg-destructive/10 hover:bg-destructive/20 text-destructive transition-colors flex items-center justify-center gap-2 border-2 border-destructive/30 hover:border-destructive/50"
+                className="w-full px-4 py-3 rounded-lg border border-red-500/30 bg-red-500/10 hover:bg-red-500/20 text-red-500 transition flex items-center justify-center gap-2"
               >
                 <Trash2 className="w-5 h-5" />
-                <span className="font-medium">Supprimer l'arc</span>
+                Supprimer l’arc
               </button>
-            )}
-
-            {algorithmStarted && (
-              <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                <p className="text-xs text-blue-700 text-center">
-                  La modification est bloquée pendant l'exécution de l'algorithme
-                </p>
+            ) : (
+              <div className="p-3 rounded-lg border border-[#ff5c89]/20 bg-[#ffe0e8] text-center text-xs text-[#ff5c89]">
+                Modification bloquée pendant l'exécution de l'algorithme
               </div>
             )}
+
           </div>
         )}
+
       </div>
     </div>
   );
