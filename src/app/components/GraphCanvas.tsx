@@ -87,9 +87,9 @@ export function GraphCanvas({
   };
 
   const getNodeColor = (node: Node) => {
-    if (node.type === 'source') return { fill: '#10b981', stroke: '#059669' };
-    if (node.type === 'sink') return { fill: '#ef4444', stroke: '#dc2626' };
-    return { fill: '#3b82f6', stroke: '#2563eb' };
+    if (node.type === 'source') return { fill: '#45dcaa', stroke: '#29be8f' };
+    if (node.type === 'sink') return { fill: '#ef5959', stroke: '#dc2626' };
+    return { fill: '#fc96b1', stroke: '#fe7a9f' };
   };
 
   const isEdgeInPath = (edgeId: string, algo2?: boolean) => {
@@ -293,11 +293,11 @@ const edgeColor =
               cy={node.y}
               r="30"
               fill={colors.fill}
-              stroke={isInPath ? '#10b981' : isSelected ? '#1e40af' : colors.stroke}
+              stroke={isInPath ? '#10b981' : isSelected ? '#ff5c89' : colors.stroke}
               strokeWidth={isInPath ? 5 : isSelected ? 5 : 2}
               className="transition-all hover:brightness-110 hover:stroke-4"
               style={{
-                filter: isInPath ? 'drop-shadow(0 0 8px rgba(16, 185, 129, 0.5))' : isSelected ? 'drop-shadow(0 0 6px rgba(30, 64, 175, 0.6))' : 'none',
+                filter: isInPath ? 'drop-shadow(0 0 8px rgba(16, 185, 129, 0.5))' : isSelected ? 'drop-shadow(0 0 6px rgba(255, 92, 137, 0.6))' : 'none',
                 cursor: 'move'
               }}
             />
