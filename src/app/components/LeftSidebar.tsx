@@ -66,170 +66,217 @@ export function LeftSidebar({
   //--------------------------------------------RENDER------------------------------------------------
 
   return (
-    <div className="w-80 border-r border-border bg-white flex flex-col h-full">
+    <div className="w-80 border-r border-border bg-background flex flex-col h-full">
+      {/* BACK BUTTON */}
       {algorithmStarted && (
-        <div className="p-4 border-b border-border bg-blue-50">
+        <div className="p-4 border-b border-border bg-muted">
           <button
             onClick={onBackToResolution}
-            className="w-full px-4 py-2 rounded-lg bg-white border border-blue-200 hover:bg-blue-100 text-blue-700 transition-colors flex items-center justify-center gap-2"
+            className="w-full px-4 py-2 rounded-lg bg-background border border-border hover:bg-muted text-foreground transition flex items-center justify-center gap-2"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to Resolution Mode
+            Retour au mode résolution
           </button>
         </div>
       )}
 
+      {/* GRAPH CONTROLS */}
       <div className="p-6 border-b border-border">
-        <h2 className="text-foreground mb-4">Graph Controls</h2>
+        <h2 className="text-foreground mb-4 font-semibold">
+          Contrôles
+        </h2>
 
-        <div className="space-y-3">
-          <button
-            onClick={onAddNode}
-            disabled={algorithmStarted}
-            className="w-full px-4 py-2.5 rounded-lg bg-blue-500 hover:bg-blue-600 text-white transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <Plus className="w-4 h-4" />
-            Add Node
-          </button>
-        </div>
+        <button
+          onClick={onAddNode}
+          disabled={algorithmStarted}
+          className="w-full px-4 py-2.5 rounded-lg bg-[#ff5c89] hover:bg-[#ff3d73] text-white transition flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <Plus className="w-4 h-4" />
+          Ajouter un sommet
+        </button>
       </div>
 
+      {/* ADD EDGE */}
       <div className="p-6 border-b border-border">
-        <h3 className="mb-4 text-foreground">Add Edge</h3>
+        <h3 className="mb-4 text-foreground font-semibold">
+          Ajouter un arc
+        </h3>
 
         <div className="space-y-3">
+
+          {/* SOURCE */}
           <div>
-            <label className="block text-sm text-muted-foreground mb-1.5">Source Node</label>
+            <label className="block text-sm text-muted-foreground mb-1.5">
+              Sommet source
+            </label>
             <select
               value={source}
               onChange={(e) => setSource(e.target.value)}
-              className="w-full px-3 py-2 rounded-lg border border-border bg-white hover:border-ring transition-colors"
+              className="w-full px-3 py-2 rounded-lg border border-border bg-background hover:border-[#ff5c89] transition"
             >
-              <option value="">Select source</option>
+              <option value="">Sélectionner la source</option>
               {nodes.map(node => (
-                <option key={node.id} value={node.id}>{node.label}</option>
+                <option key={node.id} value={node.id}>
+                  {node.label}
+                </option>
               ))}
             </select>
           </div>
 
+          {/* TARGET */}
           <div>
-            <label className="block text-sm text-muted-foreground mb-1.5">Target Node</label>
+            <label className="block text-sm text-muted-foreground mb-1.5">
+              Sommet destination
+            </label>
             <select
               value={target}
               onChange={(e) => setTarget(e.target.value)}
-              className="w-full px-3 py-2 rounded-lg border border-border bg-white hover:border-ring transition-colors"
+              className="w-full px-3 py-2 rounded-lg border border-border bg-background hover:border-[#ff5c89] transition"
             >
-              <option value="">Select target</option>
+              <option value="">Sélectionner la destination</option>
               {nodes.map(node => (
-                <option key={node.id} value={node.id}>{node.label}</option>
+                <option key={node.id} value={node.id}>
+                  {node.label}
+                </option>
               ))}
             </select>
           </div>
 
+          {/* CAPACITY */}
           <div>
-            <label className="block text-sm text-muted-foreground mb-1.5">Capacity</label>
+            <label className="block text-sm text-muted-foreground mb-1.5">
+              Capacité
+            </label>
             <input
               type="number"
               value={capacity}
               onChange={(e) => setCapacity(e.target.value)}
               min="1"
-              className="w-full px-3 py-2 rounded-lg border border-border bg-white hover:border-ring transition-colors"
+              className="w-full px-3 py-2 rounded-lg border border-border bg-background hover:border-[#ff5c89] transition"
             />
           </div>
 
+          {/* ADD EDGE BUTTON */}
           <button
             onClick={handleAddEdge}
             disabled={!source || !target || !capacity || algorithmStarted}
-            className="w-full px-4 py-2 rounded-lg bg-accent hover:bg-accent/80 text-accent-foreground transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            className="w-full px-4 py-2 rounded-lg bg-muted hover:bg-accent text-foreground transition flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Plus className="w-4 h-4" />
-            Add Edge
+            Ajouter un arc
           </button>
         </div>
       </div>
 
+      {/* ALGORITHM */}
       <div className="p-6 border-b border-border">
-        <h3 className="mb-4 text-foreground">Algorithm Controls</h3>
+        <h3 className="mb-4 text-foreground font-semibold">
+          Contrôle de l’algorithme
+        </h3>
 
         {!algorithmStarted ? (
           <div className="space-y-4">
-            <div className="flex items-center gap-3 p-3 bg-muted/30 rounded-lg">
+
+            {/* STEP MODE */}
+            <div className="flex items-center gap-3 p-3 bg-muted rounded-lg border border-border">
               <input
                 type="checkbox"
                 id="stepByStep"
                 checked={stepByStep}
                 onChange={(e) => onStepByStepChange(e.target.checked)}
-                className="w-4 h-4 rounded border-border accent-blue-500 cursor-pointer"
+                className="w-4 h-4 accent-[#ff5c89] cursor-pointer"
               />
-              <label htmlFor="stepByStep" className="text-sm cursor-pointer select-none">
-                Step-by-step resolution
+              <label
+                htmlFor="stepByStep"
+                className="text-sm cursor-pointer select-none"
+              >
+                Résolution pas à pas
               </label>
             </div>
 
+            {/* START */}
             <button
               onClick={onStartAlgorithm}
-              className="w-full px-4 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white transition-all flex items-center justify-center gap-2 shadow-md"
+              className="w-full px-4 py-3 rounded-lg bg-[#ff5c89] hover:bg-[#ff3d73] text-white transition flex items-center justify-center gap-2 shadow-sm"
             >
               <Zap className="w-5 h-5" />
-              Start Algorithm
+              Démarrer l’algorithme
             </button>
-            
           </div>
         ) : stepByStep ? (
           <div className="space-y-3">
-            
-            <button disabled={canStepForward} onClick={onStartAlgo2} className="w-full px-4 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white transition-all flex items-center justify-center gap-2 shadow-md transition-colors disabled:opacity-40 disabled:cursor-not-allowed">
-            {algorithmStarted && isAlgo2 ? "Back to Algorithm 1" : "Start Algorithm 2"}
-            </button>
-            
 
+            {/* SWITCH ALGO */}
+            <button
+              disabled={canStepForward}
+              onClick={onStartAlgo2}
+              className="w-full px-4 py-3 rounded-lg bg-[#ff5c89] hover:bg-[#ff3d73] text-white transition flex items-center justify-center gap-2 disabled:opacity-40"
+            >
+              {algorithmStarted && isAlgo2
+                ? "Retour à l’algorithme 1"
+                : "Démarrer l’algorithme 2"}
+            </button>
+
+            {/* STEPS CONTROL */}
             <div className="flex items-center gap-2">
               <button
                 onClick={onPreviousStep}
                 disabled={!canStepBackward}
-                className="flex-1 px-4 py-2.5 rounded-lg border border-border bg-white hover:bg-accent transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="flex-1 px-4 py-2.5 rounded-lg border border-border bg-background hover:bg-muted transition disabled:opacity-40 flex items-center justify-center gap-2"
               >
                 <ChevronLeft className="w-4 h-4" />
-                Previous
+                Précédent
               </button>
-
               <button
                 onClick={onPlayPause}
-                className="px-4 py-2.5 rounded-lg bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white transition-all flex items-center justify-center shadow-sm"
+                className="px-4 py-2.5 rounded-lg bg-[#ff5c89] hover:bg-[#ff3d73] text-white transition flex items-center justify-center"
               >
-                {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                {isPlaying ? (
+                  <Pause className="w-4 h-4" />
+                ) : (
+                  <Play className="w-4 h-4" />
+                )}
               </button>
-
               <button
                 onClick={onNextStep}
                 disabled={!canStepForward}
-                className="flex-1 px-4 py-2.5 rounded-lg border border-border bg-white hover:bg-accent transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="flex-1 px-4 py-2.5 rounded-lg border border-border bg-background hover:bg-muted transition disabled:opacity-40 flex items-center justify-center gap-2"
               >
-                Next
+                Suivant
                 <ChevronRight className="w-4 h-4" />
               </button>
             </div>
 
-            <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
+            {/* STEP INFO */}
+            <div className="p-3 rounded-lg border border-[#ff5c89]/20 bg-[#ffe0e8] text-center">
               <div className="flex items-center justify-between">
-                <span className="text-sm text-blue-700">Step</span>
-                <span className="font-mono text-blue-900">{currentStep} / {totalSteps}</span>
+                <span className="text-sm text-[#ff5c89]">
+                  Étape
+                </span>
+                <span className="font-mono text-[#ff5c89]">
+                  {currentStep} / {totalSteps}
+                </span>
               </div>
             </div>
-            
           </div>
         ) : (
           <div className="space-y-3">
-            <button onClick={onStartAlgo2} className="w-full px-4 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white transition-all flex items-center justify-center gap-2 shadow-md transition-colors">
-            {algorithmStarted && isAlgo2 ? "Back to Algorithm 1" : "Start Algorithm 2"}
+            <button
+              onClick={onStartAlgo2}
+              className="w-full px-4 py-3 rounded-lg bg-[#ff5c89] hover:bg-[#ff3d73] text-white transition flex items-center justify-center gap-2"
+            >
+              {algorithmStarted && isAlgo2
+                ? "Retour à l’algorithme 1"
+                : "Démarrer l’algorithme 2"}
             </button>
-            <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-center">
-              <p className="text-sm text-green-700">Algorithm 1 completed!</p>
+            <div className="p-4 bg-muted border border-border rounded-lg text-center">
+              <p className="text-sm text-foreground">
+                Algorithme 1 terminé !
+              </p>
             </div>
           </div>
         )}
       </div>
-
 
     </div>
   );
