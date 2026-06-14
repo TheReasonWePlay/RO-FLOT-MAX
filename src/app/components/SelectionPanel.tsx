@@ -45,7 +45,7 @@ export function SelectionPanel({
       <div className="p-6 border-b border-border">
         <h2 className="text-foreground flex items-center gap-2">
           <div className="w-1 h-6 bg-blue-500 rounded"></div>
-          Selection Details
+          Détails
         </h2>
       </div>
 
@@ -68,10 +68,10 @@ export function SelectionPanel({
               </svg>
             </div>
             <p className="text-sm text-muted-foreground">
-              No node or edge selected
+              Aucun sommet ou arc sélectionné
             </p>
             <p className="text-xs text-muted-foreground mt-2 max-w-xs">
-              Click on a node or edge in the graph to view details and actions
+              Cliquez sur un sommet ou un arc dans le graphique pour voir les détails et les actions
             </p>
           </div>
         )}
@@ -94,7 +94,7 @@ export function SelectionPanel({
                   {selectedNode.label}
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Selected Node</p>
+                  <p className="text-sm text-muted-foreground">Sommet sélectionné</p>
                   <p className="font-semibold text-foreground">{selectedNode.label}</p>
                 </div>
               </div>
@@ -119,12 +119,12 @@ export function SelectionPanel({
                     className="w-full px-4 py-3 rounded-lg bg-destructive/10 hover:bg-destructive/20 text-destructive transition-colors flex items-center justify-center gap-2 border-2 border-destructive/30 hover:border-destructive/50"
                   >
                     <Trash2 className="w-5 h-5" />
-                    <span className="font-medium">Delete Node</span>
+                    <span className="font-medium">Supprimer le sommet</span>
                   </button>
                 ) : (
                   <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg">
                     <p className="text-xs text-amber-700 text-center">
-                      Source and sink nodes cannot be deleted
+                      Les sommets source et destination ne peuvent pas être supprimés.
                     </p>
                   </div>
                 )}
@@ -134,7 +134,7 @@ export function SelectionPanel({
             {algorithmStarted && (
               <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
                 <p className="text-xs text-blue-700 text-center">
-                  Editing locked during algorithm execution
+                  La modification est bloquée pendant l'exécution de l'algorithme.
                 </p>
               </div>
             )}
@@ -145,7 +145,7 @@ export function SelectionPanel({
           <div className="space-y-4">
             <div className="p-4 bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-lg border-2 border-purple-200">
               <div className="mb-3">
-                <p className="text-sm text-muted-foreground mb-1">Selected Edge</p>
+                <p className="text-sm text-muted-foreground mb-1">Arc sélectionné</p>
                 <p className="font-semibold text-foreground text-lg">
                   {selectedEdge.source} → {selectedEdge.target}
                 </p>
@@ -153,19 +153,19 @@ export function SelectionPanel({
 
               <div className="grid grid-cols-2 gap-2 text-sm">
                 <div className="p-2 bg-white/60 rounded">
-                  <p className="text-xs text-muted-foreground">From</p>
+                  <p className="text-xs text-muted-foreground">De</p>
                   <p className="font-mono">{selectedEdge.source}</p>
                 </div>
                 <div className="p-2 bg-white/60 rounded">
-                  <p className="text-xs text-muted-foreground">To</p>
+                  <p className="text-xs text-muted-foreground">À</p>
                   <p className="font-mono">{selectedEdge.target}</p>
                 </div>
                 <div className="p-2 bg-white/60 rounded">
-                  <p className="text-xs text-muted-foreground">Capacity</p>
+                  <p className="text-xs text-muted-foreground">Capacité</p>
                   <p className="font-mono font-semibold">{selectedEdge.capacity}</p>
                 </div>
                 <div className="p-2 bg-white/60 rounded">
-                  <p className="text-xs text-muted-foreground">Flow</p>
+                  <p className="text-xs text-muted-foreground">Flot</p>
                   <p className="font-mono font-semibold text-blue-600">{selectedEdge.flow}</p>
                 </div>
               </div>
@@ -177,14 +177,14 @@ export function SelectionPanel({
                 className="w-full px-4 py-3 rounded-lg bg-destructive/10 hover:bg-destructive/20 text-destructive transition-colors flex items-center justify-center gap-2 border-2 border-destructive/30 hover:border-destructive/50"
               >
                 <Trash2 className="w-5 h-5" />
-                <span className="font-medium">Delete Edge</span>
+                <span className="font-medium">Supprimer l'arc</span>
               </button>
             )}
 
             {algorithmStarted && (
               <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
                 <p className="text-xs text-blue-700 text-center">
-                  Editing locked during algorithm execution
+                  La modification est bloquée pendant l'exécution de l'algorithme
                 </p>
               </div>
             )}
