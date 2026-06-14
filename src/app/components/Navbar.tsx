@@ -18,8 +18,8 @@ export function Navbar({ onReset, onExample }: NavbarProps) {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
         </div>
-        <h1 className="text-foreground">FlowGraph</h1>
-        <span className="text-sm text-muted-foreground ml-2">Max Flow Step-by-Step Visualizer</span>
+        <h1 className="text-foreground">FlotMax</h1>
+        <span className="text-sm text-muted-foreground ml-2">Recherche Opération étape par étape de Flot maximal</span>
       </div>
 
       <div className="flex items-center gap-2">
@@ -28,14 +28,14 @@ export function Navbar({ onReset, onExample }: NavbarProps) {
           className="px-4 py-2 rounded-lg border border-border bg-white hover:bg-destructive/10 text-destructive transition-colors flex items-center gap-2 text-sm"
         >
           <RotateCcw className="w-4 h-4" />
-          Reset Graph
+          Réinitialiser
         </button>
         <button
           onClick={onExample}
           className="px-4 py-2 rounded-lg border border-border bg-white hover:bg-destructive/10 text-destructive transition-colors flex items-center gap-2 text-sm"
         >
           <RotateCcw className="w-4 h-4" />
-          Example
+          Exemple
         </button>
       </div>
     </nav>
