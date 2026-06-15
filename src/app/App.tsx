@@ -417,9 +417,15 @@ export default function App() {
         return { path, bottleneck };
       });
   
-      const best = evaluated.reduce((min, p) =>
-        p.bottleneck < min.bottleneck ? p : min
-      );
+      const best = evaluated.sort((a, b) => {
+        // 1. Moins d'arcs
+        if (a.path.length !== b.path.length) {
+          return a.path.length - b.path.length;
+        }
+
+        // 2. Plus petit minimum
+        return a.bottleneck - b.bottleneck;
+      })[0];
   
       const path = best.path;
       const bottleneck = best.bottleneck;

@@ -258,7 +258,9 @@ export function LeftSidebar({
             </button>
             <div className="p-4 bg-muted border border-border rounded-lg text-center">
               <p className="text-sm text-foreground">
-                Flot complet terminé !
+                {algorithmStarted && isAlgo2
+                  ? "Flot maximal terminé !"
+                  : "Flot complet calculé !"}
               </p>
             </div>
           </div>
