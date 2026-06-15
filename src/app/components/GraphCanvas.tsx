@@ -104,16 +104,32 @@ export function GraphCanvas({
   const renderArrowMarker = (edgeId: string, isSelected: boolean, isInPath: boolean) => {
     const status = getEdgeStatus(edgeId);
 
-    const color =
-  status === 'saturated'
-    ? '#ef4444'
-    : status === 'blocked'
-    ? '#3b82f6'
-    : isAlgo2
-    ? (isInPath ? '#10b981' : '#6b7280')
-    : isInPath
-    ? '#10b981'
-    : '#6b7280';
+    let colorX;
+
+    if (isAlgo2) {
+        if (status === 'saturated') {
+          colorX = '#ef4444';
+        }
+        else if (status === 'blocked') {
+            colorX = '#3b82f6';
+        }
+        else{
+          colorX = '#3b82f6';
+        }
+    } else{ 
+      if (status === 'saturated') {
+        colorX = '#ef4444';
+      } else if (status === 'blocked') {
+          colorX = '#3b82f6';
+      } else if (isInPath) {
+          colorX = '#10b981';
+      } else {
+          colorX = '#6b7280';
+      }
+    }
+
+    const color = colorX;
+    
     return (
       <defs key={`marker-${edgeId}`}>
         <marker
@@ -183,18 +199,36 @@ export function GraphCanvas({
   ? highlightedPath.find(p => p.edgeId === edge.id)
   : null;
 
-const edgeColor =
-  status === 'saturated'
-    ? '#ef4444'
-    : status === 'blocked'
-    ? '#3b82f6'
-    : isAlgo2
-    ? (signed
-        ? (signed.direction === 1 ? '#10b981' : '#f59e0b')
-        : '#6b7280')
-    : isInPath
-    ? '#10b981'
-    : '#6b7280';
+  let colorX;
+
+  if (isAlgo2) {
+    if (signed) {
+      colorX = '#13d13f';
+    }
+    else{
+      if (status === 'saturated') {
+        colorX = '#ef4444';
+      }
+      else if (status === 'blocked') {
+          colorX = '#3b82f6';
+      }
+      else{
+        colorX = '#3b82f6';
+      }
+    }
+  } else{ 
+    if (status === 'saturated') {
+      colorX = '#ef4444';
+    } else if (status === 'blocked') {
+        colorX = '#3b82f6';
+    } else if (isInPath) {
+        colorX = '#10b981';
+    } else {
+        colorX = '#6b7280';
+    }
+  }
+
+const edgeColor = colorX;
 
         return (
           <g key={edge.id}>
