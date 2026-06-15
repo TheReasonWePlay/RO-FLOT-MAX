@@ -67,7 +67,6 @@ export function LeftSidebar({
 
   return (
     <div className="w-80 border-r border-border bg-background flex flex-col h-full">
-      {/* BACK BUTTON */}
       {algorithmStarted && (
         <div className="p-4 border-b border-border bg-muted">
           <button
@@ -80,7 +79,6 @@ export function LeftSidebar({
         </div>
       )}
 
-      {/* GRAPH CONTROLS */}
       <div className="p-6 border-b border-border">
         <h2 className="text-foreground mb-4 font-semibold">
           Contrôles
@@ -96,7 +94,6 @@ export function LeftSidebar({
         </button>
       </div>
 
-      {/* ADD EDGE */}
       <div className="p-6 border-b border-border">
         <h3 className="mb-4 text-foreground font-semibold">
           Ajouter un arc
@@ -104,7 +101,6 @@ export function LeftSidebar({
 
         <div className="space-y-3">
 
-          {/* SOURCE */}
           <div>
             <label className="block text-sm text-muted-foreground mb-1.5">
               Sommet source
@@ -123,7 +119,6 @@ export function LeftSidebar({
             </select>
           </div>
 
-          {/* TARGET */}
           <div>
             <label className="block text-sm text-muted-foreground mb-1.5">
               Sommet destination
@@ -142,7 +137,6 @@ export function LeftSidebar({
             </select>
           </div>
 
-          {/* CAPACITY */}
           <div>
             <label className="block text-sm text-muted-foreground mb-1.5">
               Capacité
@@ -156,7 +150,6 @@ export function LeftSidebar({
             />
           </div>
 
-          {/* ADD EDGE BUTTON */}
           <button
             onClick={handleAddEdge}
             disabled={!source || !target || !capacity || algorithmStarted}
@@ -168,7 +161,6 @@ export function LeftSidebar({
         </div>
       </div>
 
-      {/* ALGORITHM */}
       <div className="p-6 border-b border-border">
         <h3 className="mb-4 text-foreground font-semibold">
           Contrôle de l’algorithme
@@ -177,7 +169,6 @@ export function LeftSidebar({
         {!algorithmStarted ? (
           <div className="space-y-4">
 
-            {/* STEP MODE */}
             <div className="flex items-center gap-3 p-3 bg-muted rounded-lg border border-border">
               <input
                 type="checkbox"
@@ -194,42 +185,39 @@ export function LeftSidebar({
               </label>
             </div>
 
-            {/* START */}
             <button
               onClick={onStartAlgorithm}
               className="w-full px-4 py-3 rounded-lg bg-[#ff5c89] hover:bg-[#ff3d73] text-white transition flex items-center justify-center gap-2 shadow-sm"
             >
               <Zap className="w-5 h-5" />
-              Démarrer l’algorithme
+              Calculer le flot complet
             </button>
           </div>
         ) : stepByStep ? (
           <div className="space-y-3">
 
-            {/* SWITCH ALGO */}
             <button
               disabled={canStepForward}
               onClick={onStartAlgo2}
               className="w-full px-4 py-3 rounded-lg bg-[#ff5c89] hover:bg-[#ff3d73] text-white transition flex items-center justify-center gap-2 disabled:opacity-40"
             >
               {algorithmStarted && isAlgo2
-                ? "Retour à l’algorithme 1"
-                : "Démarrer l’algorithme 2"}
+                ? "Retour au flot complet"
+                : "Calculer le flot maximal"}
             </button>
 
-            {/* STEPS CONTROL */}
             <div className="flex items-center gap-2">
               <button
                 onClick={onPreviousStep}
                 disabled={!canStepBackward}
-                className="flex-1 px-4 py-2.5 rounded-lg border border-border bg-background hover:bg-muted transition disabled:opacity-40 flex items-center justify-center gap-2"
+                className="flex-1 px-2.5 py-2.5 rounded-lg border border-border bg-background hover:bg-muted transition disabled:opacity-40 flex items-center justify-center gap-2"
               >
                 <ChevronLeft className="w-4 h-4" />
                 Précédent
               </button>
               <button
                 onClick={onPlayPause}
-                className="px-4 py-2.5 rounded-lg bg-[#ff5c89] hover:bg-[#ff3d73] text-white transition flex items-center justify-center"
+                className="px-2.5 py-2.5 rounded-lg bg-[#ff5c89] hover:bg-[#ff3d73] text-white transition flex items-center justify-center"
               >
                 {isPlaying ? (
                   <Pause className="w-4 h-4" />
@@ -240,14 +228,13 @@ export function LeftSidebar({
               <button
                 onClick={onNextStep}
                 disabled={!canStepForward}
-                className="flex-1 px-4 py-2.5 rounded-lg border border-border bg-background hover:bg-muted transition disabled:opacity-40 flex items-center justify-center gap-2"
+                className="flex-1 px-2.5 py-2.5 rounded-lg border border-border bg-background hover:bg-muted transition disabled:opacity-40 flex items-center justify-center gap-2"
               >
                 Suivant
                 <ChevronRight className="w-4 h-4" />
               </button>
             </div>
 
-            {/* STEP INFO */}
             <div className="p-3 rounded-lg border border-[#ff5c89]/20 bg-[#ffe0e8] text-center">
               <div className="flex items-center justify-between">
                 <span className="text-sm text-[#ff5c89]">

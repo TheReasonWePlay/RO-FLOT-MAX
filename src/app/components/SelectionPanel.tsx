@@ -42,7 +42,6 @@ export function SelectionPanel({
 
   return (
     <div className="w-80 border-l border-border bg-background flex flex-col h-full">
-      {/* HEADER */}
       <div className="p-6 border-b border-border">
         <h2 className="text-foreground flex items-center gap-2 font-semibold">
           <div className="w-1 h-6 bg-[#ff5c89] rounded"></div>
@@ -52,7 +51,6 @@ export function SelectionPanel({
 
       <div className="flex-1 p-6 overflow-auto">
 
-        {/* EMPTY STATE */}
         {!hasSelection && (
           <div className="flex flex-col items-center justify-center h-full text-center">
 
@@ -83,13 +81,10 @@ export function SelectionPanel({
           </div>
         )}
 
-        {/* NODE */}
         {selectedNode && (
           <div className="space-y-4">
 
             <div className="p-4 rounded-lg border border-border bg-muted">
-
-              {/* HEADER NODE */}
               <div className="flex items-center gap-3 mb-3">
 
                 <div
@@ -116,8 +111,6 @@ export function SelectionPanel({
                 </div>
 
               </div>
-
-              {/* INFO GRID */}
               <div className="grid grid-cols-2 gap-2 text-sm">
 
                 <div className="p-2 bg-background rounded border border-border">
@@ -134,8 +127,6 @@ export function SelectionPanel({
 
               </div>
             </div>
-
-            {/* ACTIONS NODE */}
             {!algorithmStarted ? (
               selectedNode.type === "normal" ? (
                 <button
@@ -159,13 +150,10 @@ export function SelectionPanel({
           </div>
         )}
 
-        {/* EDGE */}
         {selectedEdge && (
           <div className="space-y-4">
 
             <div className="p-4 rounded-lg border border-border bg-muted">
-
-              {/* HEADER EDGE */}
               <div className="mb-3">
                 <p className="text-xs text-muted-foreground">
                   Arc sélectionné
@@ -175,7 +163,6 @@ export function SelectionPanel({
                 </p>
               </div>
 
-              {/* GRID */}
               <div className="grid grid-cols-2 gap-2 text-sm">
 
                 <div className="p-2 bg-background rounded border border-border">
@@ -205,7 +192,6 @@ export function SelectionPanel({
               </div>
             </div>
 
-            {/* ACTION EDGE */}
             {!algorithmStarted ? (
               <button
                 onClick={() => onDeleteEdge(selectedEdge.id)}

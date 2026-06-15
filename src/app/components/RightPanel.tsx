@@ -9,25 +9,21 @@ interface RightPanelProps {
 export function RightPanel({ nodeCount, edgeCount, maxFlow, selectedNode, selectedEdge }: RightPanelProps) {
   return (
     <div className="w-80 border-l border-border bg-background flex flex-col h-full overflow-auto">
-      {/* HEADER */}
       <div className="p-6 border-b border-border">
         <h2 className="text-foreground mb-4 font-semibold">
           Information du graphique
         </h2>
         <div className="space-y-3">
-          {/* Nodes */}
           <div className="flex items-center justify-between p-3 bg-muted rounded-lg border border-border">
             <span className="text-sm text-muted-foreground">Sommets</span>
             <span className="font-mono text-foreground">{nodeCount}</span>
           </div>
 
-          {/* Edges */}
           <div className="flex items-center justify-between p-3 bg-muted rounded-lg border border-border">
             <span className="text-sm text-muted-foreground">Arcs</span>
             <span className="font-mono text-foreground">{edgeCount}</span>
           </div>
 
-          {/* Max Flow (PRIMARY METRIC) */}
           <div className="flex items-center justify-between p-3 rounded-lg border border-[#ff5c89]/20 bg-gradient-to-r from-[#ffe0e8] to-[#fff1f4]">
             <span className="text-sm text-[#ff5c89] font-medium">
               Flot maximal
@@ -40,7 +36,6 @@ export function RightPanel({ nodeCount, edgeCount, maxFlow, selectedNode, select
         </div>
       </div>
 
-      {/* SELECTED NODE */}
       {selectedNode && (
         <div className="p-6 border-b border-border">
           <h3 className="mb-4 text-foreground font-semibold">
@@ -92,7 +87,6 @@ export function RightPanel({ nodeCount, edgeCount, maxFlow, selectedNode, select
         </div>
       )}
 
-      {/* SELECTED EDGE */}
       {selectedEdge && (
         <div className="p-6 border-b border-border">
           <h3 className="mb-4 text-foreground font-semibold">
@@ -133,7 +127,6 @@ export function RightPanel({ nodeCount, edgeCount, maxFlow, selectedNode, select
         </div>
       )}
 
-      {/* EMPTY STATE */}
       {!selectedNode && !selectedEdge && (
         <div className="p-6 flex-1 flex items-center justify-center">
           <p className="text-sm text-muted-foreground text-center leading-relaxed">
