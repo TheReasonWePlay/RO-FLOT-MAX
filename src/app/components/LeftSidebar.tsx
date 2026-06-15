@@ -253,8 +253,8 @@ export function LeftSidebar({
               className="w-full px-4 py-3 rounded-lg bg-[#ff5c89] hover:bg-[#ff3d73] text-white transition flex items-center justify-center gap-2"
             >
               {algorithmStarted && isAlgo2
-                ? "Retour à l’algorithme 1"
-                : "Démarrer l’algorithme 2"}
+                ? "Retour au flot complet"
+                : "Calculer le flot maximal"}
             </button>
             <div className="p-4 bg-muted border border-border rounded-lg text-center">
               <p className="text-sm text-foreground">
