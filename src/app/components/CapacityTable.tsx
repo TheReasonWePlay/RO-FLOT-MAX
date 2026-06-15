@@ -72,7 +72,7 @@ export function CapacityTable({
 
           <tbody>
             {edges.map(edge => {
-              const edgeLabel = `${getNodeLabel(edge.source)} → ${getNodeLabel(edge.target)}`;
+              const edgeLabel = `${getNodeLabel(edge.source)}${getNodeLabel(edge.target)}`;
               const history = capacityHistory[edge.id] || [];
               const statusHist = statusHistory[edge.id] || [];
 
