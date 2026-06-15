@@ -258,7 +258,7 @@ export function LeftSidebar({
             </button>
             <div className="p-4 bg-muted border border-border rounded-lg text-center">
               <p className="text-sm text-foreground">
-                Algorithme 1 terminé !
+                Flot complet terminé !
               </p>
             </div>
           </div>
