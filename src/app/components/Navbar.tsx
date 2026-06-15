@@ -1,4 +1,4 @@
-import { RotateCcw, GitCompare } from 'lucide-react';
+import { RotateCcw, Waypoints, FileClock } from 'lucide-react';
 
 //--------------------------------------------TYPE------------------------------------------------
 
@@ -15,7 +15,7 @@ export function Navbar({ onReset, onExample }: NavbarProps) {
       <div className="flex items-center gap-3">
         
         <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#ff5c89] to-[#ff3d73] flex items-center justify-center">
-          <GitCompare className="w-5 h-5 text-white" />
+          <Waypoints className="w-5 h-5 text-white" />
         </div>
 
         <h1 className="text-foreground font-semibold">FlotMax</h1>
@@ -39,7 +39,7 @@ export function Navbar({ onReset, onExample }: NavbarProps) {
           onClick={onExample}
           className="px-4 py-2 rounded-lg bg-[#ff5c89] hover:bg-[#ff3d73] text-white transition flex items-center gap-2 text-sm"
         >
-          <RotateCcw className="w-4 h-4" />
+          <FileClock className="w-4 h-4" />
           Exemple
         </button>
 
